@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import sendgrid.sandbox.rule.SendGridResource;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * SendGrid Web API v3 Mail Test.
@@ -19,7 +21,7 @@ import sendgrid.sandbox.rule.SendGridResource;
  * 
  * @author kikuta
  */
-public class MainTest {
+public class MailTest {
     
     @ClassRule
     public static SendGridResource sgResource = new SendGridResource();
@@ -31,7 +33,6 @@ public class MainTest {
 
     @Test
     public void SendingSimpleMailTest() throws UnirestException {
-        
         HttpResponse<JsonNode> result = Unirest.post("https://api.sendgrid.com/v3/mail/send")
                 .header("Authorization", "Bearer " + sgResource.apiKey())
                 .header("Content-Type", "application/json")
@@ -42,11 +43,19 @@ public class MainTest {
     
     @Test
     public void SendingSimpleMailWithCategoriesTest() throws UnirestException {
-        
         HttpResponse<JsonNode> result = Unirest.post("https://api.sendgrid.com/v3/mail/send")
                 .header("Authorization", "Bearer " + sgResource.apiKey())
                 .header("Content-Type", "application/json")
                 .body("{\"personalizations\": [{\"to\": [{\"email\": \"" + sgResource.to() + "\"}]}],\"from\": {\"email\": \"" + sgResource.from() + "\"},\"subject\": \"テスト\",\"content\": [{\"type\": \"text/plain\", \"value\": \"Unirestで送信するテスト\"}], \"categories\": [\"Java\", \"Sample\"]}")
+                .asJson();
+        assertThat(result.getStatus(), is(202));
+    }
+    
+    @Test
+    public void user() throws UnirestException {
+        HttpResponse<JsonNode> result = Unirest.post("https://api.sendgrid.com/v3/user/account")
+                .header("Authorization", "Bearer " + sgResource.apiKey())
+                .header("Content-Type", "application/json")
                 .asJson();
         assertThat(result.getStatus(), is(202));
     }
