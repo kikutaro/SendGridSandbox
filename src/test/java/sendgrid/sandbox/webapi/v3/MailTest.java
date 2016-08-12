@@ -50,13 +50,4 @@ public class MailTest {
                 .asJson();
         assertThat(result.getStatus(), is(202));
     }
-    
-    @Test
-    public void user() throws UnirestException {
-        HttpResponse<JsonNode> result = Unirest.post("https://api.sendgrid.com/v3/user/account")
-                .header("Authorization", "Bearer " + sgResource.apiKey())
-                .header("Content-Type", "application/json")
-                .asJson();
-        assertThat(result.getStatus(), is(202));
-    }
 }
