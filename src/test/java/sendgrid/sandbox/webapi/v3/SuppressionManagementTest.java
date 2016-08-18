@@ -12,6 +12,10 @@ import sendgrid.sandbox.rule.SendGridResource;
 
 /**
  * https://sendgrid.com/docs/API_Reference/Web_API_v3/Suppression_Management/groups.html
+ * https://sendgrid.com/docs/User_Guide/Suppressions/advanced_suppression_manager.html
+ * 
+ * https://sendgrid.kke.co.jp/docs/User_Manual_JP/Suppressions/advanced_suppression_manager.html
+ * https://sendgrid.kke.co.jp/docs/User_Manual_JP/Suppressions/group_unsubscribes.html
  * 
  * @author kikuta
  */
