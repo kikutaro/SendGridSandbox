@@ -21,6 +21,20 @@ public class SendGridResource extends ExternalResource {
         sendGridProp.load(this.getClass().getResourceAsStream("/" + SG_PROP_FILE_NAME));
     }
     
+    public String loginId() {
+        if(sendGridProp == null) {
+            System.out.println("sendgrid.properties is not existed.");
+        }
+        return sendGridProp.getProperty(SG_PROP_LOGIN_ID);
+    }
+    
+    public String loginPass() {
+        if(sendGridProp == null) {
+            System.out.println("sendgrid.properties is not existed.");
+        }
+        return sendGridProp.getProperty(SG_PROP_LOGIN_PASS);
+    }
+    
     public String apiKey() {
         if(sendGridProp == null) {
             System.out.println("sendgrid.properties is not existed.");
