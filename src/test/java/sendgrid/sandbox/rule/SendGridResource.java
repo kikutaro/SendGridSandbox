@@ -56,6 +56,13 @@ public class SendGridResource extends ExternalResource {
         return sendGridProp.getProperty("To");
     }
     
+    public String to2() {
+        if(sendGridProp == null) {
+            System.out.println("sendgrid.properties is not existed.");
+        }
+        return sendGridProp.getProperty("To2");
+    }
+    
     public String from() {
         if(sendGridProp == null) {
             System.out.println("sendgrid.properties is not existed.");
